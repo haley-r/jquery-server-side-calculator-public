@@ -16,6 +16,7 @@ function calculate(){
         secondNumber: $('#secondNumberIn').val(),
     }
     //clear inputs
+    console.log(userEntry);
     clearInputs();
     //post request to server js, send input object
     $.ajax({
