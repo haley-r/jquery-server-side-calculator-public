@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 
 const add=require('./modules/add');
 const subtract=require('./modules/subtract');
+const multiply = require('./modules/multiply');
+const divide = require('./modules/divide');
 
 //uses
 const app = express();
@@ -40,8 +42,6 @@ app.post('/calculation', (req,res) => {
         result: result
     };
     history.push(resultObject);
-    console.log(history);
-    
     res.sendStatus(200);
 })
 
