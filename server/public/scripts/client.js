@@ -20,7 +20,7 @@ function calculate(){
     //post request to server js, send input object
     $.ajax({
         type: 'POST',
-        url: '/calculator',
+        url: '/calculation',
         data: userEntry
     }).then( function (response) {
         console.log('back from POST:', response);
@@ -30,7 +30,6 @@ function calculate(){
         console.log(err);
         alert('error with calculating result');
     })
-    
 }//end calculate
 
 
@@ -39,4 +38,20 @@ function clearInputs(){
     $('#firstNumberIn').val('');
     $('#operatorIn').val('--operator--');
     $('#secondNumberIn').val('');
+}
+
+function updateDisplay(){
+    console.log('in updateDisplay');
+    //make get request for answer + history
+    $.ajax({
+        type: 'GET',
+        url: '/calculation'
+    }).then(function(response) {
+        console.log('back from GET:', response);
+        //clear DOM
+        //append to DOM
+    }).catch(function(err) {
+        alert('error posting results');
+        console.log(err);
+    })
 }

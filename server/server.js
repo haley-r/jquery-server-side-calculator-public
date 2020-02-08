@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 
 //uses
 const app = express();
+let history=[];
 
 app.use(express.static('server/public'));
 app.use(bodyParser.urlencoded({extended:true}));
@@ -16,19 +17,12 @@ app.listen(port,() => {
     console.log( 'server up on:', port );
 })
 
-// app.get('/inventory', (req, res) => {
-//     console.log('in /inventory GET');
-//     res.send(inventory);
-// }) // end /inventory POST
+app.get('/calculation', (req, res) => {
+    console.log('in/calculation GET:');
+    res.send(history);
+})
 
-// app.post('/inventory', (req, res) => {
-//     console.log('in /inventory POST:', req.body);
-//     if (req.body.size === 'ginormous' || req.body.description === 'ginormous') {
-//         res.sendStatus(400);
-//     } // end ginormous
-//     else {
-//         // push new object into an array if !ginormous
-//         inventory.push(req.body);
-//         res.sendStatus(201);
-//     } // end ! ginormous
-// }) // end /inventory POST
+app.post('/calculation', (req,res) => {
+    console.log('in /calculation POST:', req.body);
+    res.sendStatus(200);
+})
