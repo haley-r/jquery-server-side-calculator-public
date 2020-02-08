@@ -13,17 +13,15 @@
     <h2>JQuery Server Side Calculator</h2>
 
     <section id="inputArea">
-        <button id="clearButton">C</button>
         <input type="number" placeholder="first number" id="firstNumberIn">
-        <select id="operatorIn">
-            <option>--operator--</option>
-            <option>+</option>
-            <option>-</option>
-            <option>x</option>
-            <option>/</option>
+        <button class="operatorButton">+</button>
+        <button class="operatorButton">-</button>
+        <button class="operatorButton">x</button>
+        <button class="operatorButton">/</button>
         </select>
         <input type="number" placeholder="second number" id="secondNumberIn">
         <button id="calculateButton">=</button>
+        <button id="clearButton">C</button>
     </section><!--input area-->
     <section id="resultsDisplay">
         <!--this will be filled in with jQuery-->

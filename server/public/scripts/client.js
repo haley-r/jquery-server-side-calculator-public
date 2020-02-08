@@ -1,22 +1,28 @@
-console.log("hello from client.js");
 $(document).ready(onReady);
+
+let selectedOperator;
 
 function onReady(){
     //click listener on equals/calculate button
     $('#calculateButton').on('click', calculate);
     //click listener on clear button
     $('#clearButton').on('click', clearInputs);
+    //click listener on operator buttons
+    $('.operatorButton').on('click', assignOperator);
+}
+
+function assignOperator(){
+    selectedOperator = $(this).text();
 }
 
 function calculate(){
     //make object from input values
     let userEntry = {
         firstNumber: $('#firstNumberIn').val(),
-        operator: $('#operatorIn').val(),
+        operator: selectedOperator,
         secondNumber: $('#secondNumberIn').val(),
     }
     //clear inputs
-    console.log(userEntry);
     clearInputs();
     //post request to server js, send input object
     $.ajax({

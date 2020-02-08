@@ -2,7 +2,6 @@ body {
     background-color: rgb(157, 228, 204);
 }
 
-input, select, button {
-    width: 100%;
-    display: block;
+input {
+    width: 3em;
 }
