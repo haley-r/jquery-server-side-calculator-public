@@ -115,8 +115,7 @@ function showMostRecent(anObject){
     }
     else {
         lastAnswer=anObject.result;
-        console.log('last answer is:', lastAnswer);
-        resultsDisplay.append(`${lastAnswer}`);
+        resultsDisplay.append(`${lastAnswer.toFixed(7)}`);
     }
 }//end showMostRecent
 function showHistory(array){
@@ -130,7 +129,6 @@ function showHistory(array){
     }
 }//end showHistory
 function updateDisplayOnLoad() {
-    console.log('in updateDisplayOnLoad');
     //make get request for answer + history
     $.ajax({
         type: 'GET',
