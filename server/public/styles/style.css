@@ -5,3 +5,8 @@ body {
 input {
     width: 3em;
 }
+
+#calcDisplay {
+    border: 2px solid black;
+    height: 50px;
+}

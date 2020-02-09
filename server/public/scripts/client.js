@@ -1,26 +1,61 @@
 $(document).ready(onReady);
 
-let selectedOperator;
+let selectedOperator='';
+let firstNumberEntry='';
+let secondNumberEntry='';
+let currentNumberEntry='';
+let calculationComplete=false;
+let lastAnswer='';
 
 function onReady(){
+    //show history, if there is any
+    updateDisplayOnLoad();
+    //but not the calculator display, that should be clear
     //click listener on equals/calculate button
     $('#calculateButton').on('click', calculate);
     //click listener on clear button
     $('#clearButton').on('click', clearInputs);
     //click listener on operator buttons
-    $('.operatorButton').on('click', assignOperator);
+    $('.operatorButton').on('click', operatorEntry);
+    //click listener on number/decimal buttons
+    $('.numberButton').on('click', numberEntry)
 }
 
-function assignOperator(){
+function operatorEntry(){
+    //if there's something in the display and user selects an operator,
+    //assume they want the last answer to be first number
+    if (calculationComplete == true) {
+        $('#calcDisplay').empty();
+        $('#calcDisplay').append(lastAnswer);
+        firstNumberEntry = lastAnswer;
+        calculationComplete = false;
+        }//end if
+    else{
+        firstNumberEntry= currentNumberEntry;
+         }//end else
+    currentNumberEntry= '',
     selectedOperator = $(this).text();
+    $('#calcDisplay').append($(this).text());
+}
+
+function numberEntry(){
+    //if there's something in the display and user starts entry,
+    //clear display and set calculationComplete to false
+    if (calculationComplete == true){
+        $('#calcDisplay').empty();
+        calculationComplete = false;
+    }
+    $('#calcDisplay').append($(this).text());
+    currentNumberEntry+=$(this).text();
 }
 
 function calculate(){
     //make object from input values
+    secondNumberEntry = currentNumberEntry;
     let userEntry = {
-        firstNumber: $('#firstNumberIn').val(),
+        firstNumber: firstNumberEntry,
         operator: selectedOperator,
-        secondNumber: $('#secondNumberIn').val(),
+        secondNumber: secondNumberEntry,
     }
     //clear inputs
     clearInputs();
@@ -37,15 +72,18 @@ function calculate(){
         console.log(err);
         alert('error with calculating result');
     })
-}//end calculate
-
+}//end calculate (POST)
 
 function clearInputs(){
-    $('#firstNumberIn').val('');
-    $('#operatorIn').val('--operator--');
-    $('#secondNumberIn').val('');
-}
+    $('#calcDisplay').empty();
+    selectedOperator = '';
+    firstNumberEntry = '';
+    secondNumberEntry = '';
+    currentNumberEntry = '';
+    calculationComplete = false;
+}//end clearInputs
 
+//These functions are triggered by calculate, after GET request is fulfilled
 function updateDisplay(){
     console.log('in updateDisplay');
     //make get request for answer + history
@@ -61,26 +99,52 @@ function updateDisplay(){
         showMostRecent(latestResult);
         //update history on DOM
         showHistory(historyList);
+        //set calculationComplete to true
+        calculationComplete=true;
     }).catch(function(err) {
         alert('error posting results');
         console.log(err);
     })
-}
-
+}//end updateDisplay (GET)
 function showMostRecent(anObject){
-    let resultsDisplay = $('#resultsDisplay');
+    let resultsDisplay = $('#calcDisplay');
     resultsDisplay.empty();
-    resultsDisplay.append(`<h2>${anObject.result}</h2>`);
-}
-
+    if (anObject.result==undefined){
+        lastAnswer = '',
+        resultsDisplay.append(`ERR`);
+    }
+    else {
+        lastAnswer=anObject.result;
+        console.log('last answer is:', lastAnswer);
+        resultsDisplay.append(`${lastAnswer}`);
+    }
+}//end showMostRecent
 function showHistory(array){
     let historyDisplay = $('#historyDisplayList');
     historyDisplay.empty();
-    console.log('in showHistory', array);
     for (let i=array.length-1; i>=0; i--){
         result=array[i];
         historyDisplay.append(`
             <li>${result.firstNumber}${result.operator}${result.secondNumber}=${result.result}</li>
             `);
     }
-}
+}//end showHistory
+function updateDisplayOnLoad() {
+    console.log('in updateDisplayOnLoad');
+    //make get request for answer + history
+    $.ajax({
+        type: 'GET',
+        url: '/calculation'
+    }).then(function (response) {
+        console.log('back from GET:', response);
+        //clear DOM
+        let historyList = response;
+        //clear the entry area
+        $('#calcDisplay').empty();
+        //update history on DOM
+        showHistory(historyList);
+        calculationComplete = true;
+    }).catch(function (err) {
+        alert('error posting results');
+        console.log(err);
+    })};
