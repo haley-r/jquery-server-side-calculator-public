@@ -1,12 +1,176 @@
-body {
-    background-color: rgb(157, 228, 204);
+@import url('https://fonts.googleapis.com/css?family=Girassol|Lato|VT323&display=swap');
+
+html {
+  box-sizing: border-box;
 }
 
-input {
-    width: 3em;
+body {
+    background-image: url(../images/vintage-wallpaper.jpg);
+    text-align: center;
+    font-family: 'Girassol', cursive;
+}
+
+header, #historyDisplay {
+    background-color: rgb(243, 243, 241);
+    width: 400px;
+    margin: 20px auto;
+    padding: 1em;
+    color: rgb(42, 54, 48);
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.2em;
+    border-bottom: 2px dotted rgb(42, 54, 48);
+    margin-bottom: .5em;
+}
+
+li {
+    padding: .2em;
+}
+
+#calcBody {
+    width: 300px;
+    height: 500px;
+    background-color: rgb(219, 218, 185);
+    margin: 0 auto;
+    border: 16px outset rgb(211, 210, 183);
+}
+
+#inputArea {
+    width: 280px;
+    height: 460px;
+    margin: 10px auto;
+    background-color: rgb(22, 21, 21);
+    border: 6px inset rgb(211, 210, 183);
 }
 
 #calcDisplay {
-    border: 2px solid black;
     height: 50px;
+    width: 90%;
+    margin: 20px auto;
+    border: 5px inset black;
+    background-color: rgb(37, 34, 34);
+    font-family: 'VT323', monospace;
+    font-size: 3.4em;
+    text-align: right;
+    color: rgb(15, 116, 6);
 }
+
+#numPad {
+    height: 350px;
+    position: relative;
+    padding: 0 5px;
+}
+
+button {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    border-radius: 8px;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.5em;
+}
+
+#clearButton, .operatorButton, #decimalButton {
+    background-color: rgb(10, 151, 132);
+    color: ivory;
+}
+
+#clearButton {
+    top: 20px;
+    right: 140px;
+    width: 110px;
+}
+
+#buttonTimes {
+    top: 20px;
+    right: 20px;
+}
+
+#buttonMinus {
+    top: 140px;
+    right: 20px;
+}
+
+#buttonPlus {
+    top: 200px;
+    right: 20px;
+}
+
+#buttonDivide {
+    top: 80px;
+    right: 20px;
+}
+
+#calculateButton {
+    top: 260px;
+    right: 20px;
+    width: 130px;
+    color: ivory;
+    background-color: rgb(228, 137, 19);
+}
+
+#button6 {
+    top: 140px;
+    right: 80px;
+}
+
+#button3 {
+    top: 200px;
+    right: 80px;
+}
+
+#button9 {
+    top: 80px;
+    right: 80px;
+}
+
+#decimalButton {
+    top: 20px;
+    right: 80px;
+}
+
+#button5 {
+    top: 140px;
+    right: 140px;
+}
+
+#button2 {
+    top: 200px;
+    right: 140px;
+}
+
+#button8 {
+    top: 80px;
+    right: 140px;
+}
+
+#button0 {
+    top: 260px;
+    right: 160px;
+    width: 90px;
+}
+
+#button4 {
+    top: 140px;
+    right: 200px;
+}
+
+#button1 {
+    top: 200px;
+    right: 200px;
+}
+
+#button7 {
+    top: 80px;
+    right: 200px;
+}
+

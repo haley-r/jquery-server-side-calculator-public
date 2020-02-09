@@ -5,35 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="vendors/jquery-3.4.1.min.js"></script>
     <script src="scripts/client.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/meyer-hard-reset.css">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <title>Weekend Challenge Wk8</title>
 </head>
 <body>
-    <h1>Weekend Challenge Week 8</h1>
-    <h2>JQuery Server Side Calculator</h2>
+    <header>
+        <h1>Weekend Challenge Week 8</h1>
+        <h2>JQuery Server Side Calculator</h2>
+    </header>
 
-    <section id="inputArea">
-        <h3 id="calcDisplay"></h3>
-        <button class="numberButton">1</button>
-        <button class="numberButton">2</button>
-        <button class="numberButton">3</button>
-        <button class="numberButton">4</button>
-        <button class="numberButton">5</button>
-        <button class="numberButton">6</button>
-        <button class="numberButton">7</button>
-        <button class="numberButton">8</button>
-        <button class="numberButton">9</button>
-        <button class="numberButton">0</button>
-        <button class="numberButton decimalButton">.</button>
-        <button class="operatorButton">+</button>
-        <button class="operatorButton">-</button>
-        <button class="operatorButton">x</button>
-        <button class="operatorButton">/</button>
-        
-        <!-- <input type="number" placeholder="second number" id="secondNumberIn"> -->
-        <button id="calculateButton">=</button>
-        <button id="clearButton">C</button>
-    </section><!--input area-->
+    <div id="calcBody">
+        <div id="inputArea">
+            <h3 id="calcDisplay"></h3>
+            <div id="numPad">
+                <button class="numberButton" id="button1">1</button>
+                <button class="numberButton" id="button2">2</button>
+                <button class="numberButton" id="button3">3</button>
+                <button class="numberButton" id="button4">4</button>
+                <button class="numberButton" id="button5">5</button>
+                <button class="numberButton" id="button6">6</button>
+                <button class="numberButton" id="button7">7</button>
+                <button class="numberButton" id="button8">8</button>
+                <button class="numberButton" id="button9">9</button>
+                <button class="numberButton" id="button0">0</button>
+                <button class="numberButton decimalButton" id="decimalButton">.</button>
+                <button class="operatorButton" id="buttonPlus">+</button>
+                <button class="operatorButton" id="buttonMinus">-</button>
+                <button class="operatorButton" id="buttonTimes">x</button>
+                <button class="operatorButton" id="buttonDivide">/</button>
+                <!-- <input type="number" placeholder="second number" id="secondNumberIn"> -->
+                <button id="calculateButton">=</button>
+                <button id="clearButton">C</button>
+            </div><!--numPad-->
+        </div><!--#input area-->
+    </div><!--#calcBody-->
     <section id="resultsDisplay">
         <!--this will be filled in with jQuery-->
     </section>
