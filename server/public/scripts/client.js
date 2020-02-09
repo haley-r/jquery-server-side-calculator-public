@@ -41,7 +41,6 @@ function calculate(){
 
 
 function clearInputs(){
-    console.log("in clear");
     $('#firstNumberIn').val('');
     $('#operatorIn').val('--operator--');
     $('#secondNumberIn').val('');
@@ -56,9 +55,32 @@ function updateDisplay(){
     }).then(function(response) {
         console.log('back from GET:', response);
         //clear DOM
-        //append to DOM
+        let historyList = response;
+        let latestResult = historyList[historyList.length-1];
+        //append most recent results to DOM
+        showMostRecent(latestResult);
+        //update history on DOM
+        showHistory(historyList);
     }).catch(function(err) {
         alert('error posting results');
         console.log(err);
     })
+}
+
+function showMostRecent(anObject){
+    let resultsDisplay = $('#resultsDisplay');
+    resultsDisplay.empty();
+    resultsDisplay.append(`<h2>${anObject.result}</h2>`);
+}
+
+function showHistory(array){
+    let historyDisplay = $('#historyDisplayList');
+    historyDisplay.empty();
+    console.log('in showHistory', array);
+    for (let i=array.length-1; i>=0; i--){
+        result=array[i];
+        historyDisplay.append(`
+            <li>${result.firstNumber}${result.operator}${result.secondNumber}=${result.result}</li>
+            `);
+    }
 }
