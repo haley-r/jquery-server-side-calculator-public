@@ -128,7 +128,10 @@ function showMostRecent(anObject){
     }
     else {
         lastAnswer=anObject.result;
-        resultsDisplay.append(`${lastAnswer.toFixed(7)}`);
+        //if it's long only display seven digits
+        if (lastAnswer.toString().length>7){resultsDisplay.append(`${lastAnswer.toFixed(7)}`);} 
+        //otherwise display whatever it is
+        else {resultsDisplay.append(`${lastAnswer}`);}
     }
 }//end showMostRecent
 function showHistory(array){
