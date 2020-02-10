@@ -38,7 +38,6 @@ function operatorEntry(){
     //if operator has already been clicked, remove previous from display
     //and don't change firstNumber value
     else if (selectedOperator != ''){
-        console.log('already assigned an operator!');
         $('#calcDisplay').empty();
         $('#calcDisplay').append(`${firstNumberEntry}`);
          }//end else
@@ -59,6 +58,8 @@ function numberEntry(){
 }
 
 function calculate(){
+    //only run if all values are assigned
+    if (firstNumberEntry!='' && currentNumberEntry!='' && selectedOperator!=''){
     //make object from input values
     secondNumberEntry = currentNumberEntry;
     let userEntry = {
@@ -81,6 +82,10 @@ function calculate(){
         console.log(err);
         alert('error with calculating result');
     })
+}//end if
+else {
+    alert('Missing information, cannot calculate!');
+}
 }//end calculate (POST)
 
 function clearInputs(){
@@ -94,7 +99,6 @@ function clearInputs(){
 
 //These functions are triggered by calculate, after GET request is fulfilled
 function updateDisplay(){
-    console.log('in updateDisplay');
     //make get request for answer + history
     $.ajax({
         type: 'GET',
