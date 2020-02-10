@@ -8,9 +8,9 @@ let calculationComplete=false;
 let lastAnswer='';
 
 function onReady(){
-    //show history, if there is any
+    //show history, if there is any on the server
+    //same as updateDisplay, but no display on calculator itself
     updateDisplayOnLoad();
-    //but not the calculator display, that should be clear
     //click listener on equals/calculate button
     $('#calculateButton').on('click', calculate);
     //click listener on clear button
@@ -22,7 +22,8 @@ function onReady(){
 }
 
 function operatorEntry(){
-    //if there's something in the display and user selects an operator,
+    //if there's something in the display from a previous calculation
+    //and user selects an operator,
     //assume they want the last answer to be first number
     if (calculationComplete == true) {
         $('#calcDisplay').empty();
@@ -31,7 +32,7 @@ function operatorEntry(){
         calculationComplete = false;
         }
     //if neither first number or operater has been assigned, firstNumber
-    //is whatever has been entered so far
+    //is whatever has been entered so far when operator button clicked
     else if (firstNumberEntry==='' && selectedOperator===''){
         firstNumberEntry = currentNumberEntry;
     }
@@ -85,7 +86,7 @@ function calculate(){
 }//end if
 else {
     alert('Missing information, cannot calculate!');
-}
+}//end else
 }//end calculate (POST)
 
 function clearInputs(){
@@ -137,6 +138,7 @@ function showMostRecent(anObject){
 function showHistory(array){
     let historyDisplay = $('#historyDisplayList');
     historyDisplay.empty();
+    //loop through history array and post, most recent to oldest
     for (let i=array.length-1; i>=0; i--){
         result=array[i];
         historyDisplay.append(`
