@@ -29,9 +29,18 @@ function operatorEntry(){
         $('#calcDisplay').append(lastAnswer);
         firstNumberEntry = lastAnswer;
         calculationComplete = false;
-        }//end if
-    else{
-        firstNumberEntry= currentNumberEntry;
+        }
+    //if neither first number or operater has been assigned, firstNumber
+    //is whatever has been entered so far
+    else if (firstNumberEntry==='' && selectedOperator===''){
+        firstNumberEntry = currentNumberEntry;
+    }
+    //if operator has already been clicked, remove previous from display
+    //and don't change firstNumber value
+    else if (selectedOperator != ''){
+        console.log('already assigned an operator!');
+        $('#calcDisplay').empty();
+        $('#calcDisplay').append(`${firstNumberEntry}`);
          }//end else
     currentNumberEntry= '',
     selectedOperator = $(this).text();
