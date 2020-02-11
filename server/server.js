@@ -15,11 +15,11 @@ app.use(express.static('server/public'));
 app.use(bodyParser.urlencoded({extended:true}));
 
 //globals
-const port=5000;
+const PORT = process.env.PORT || 5000;
 
 //start server
-app.listen(port,() => {
-    console.log( 'server up on:', port );
+app.listen(PORT,() => {
+    console.log( 'server up on:', PORT );
 })
 
 app.get('/calculation', (req, res) => {
